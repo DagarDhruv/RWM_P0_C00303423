@@ -8,7 +8,6 @@ function isPerfectCube(n: number): boolean {
   return root * root * root === n;
 }
 
-// Pure function: smallest number >= x that is a perfect square or perfect cube
 export function Square(x: number): number {
   let n = x;
   while (!isPerfectSquare(n) && !isPerfectCube(n)) {

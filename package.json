@@ -1,0 +1,8 @@
+{
+  "name": "peer-filter-c00303423",			
+  "version": "0.1.2",				
+  "type": "module",
+  "exports": {
+    ".": "./Sprint1/src/lib/filters/SquareDance.ts"	
+  }
+}
