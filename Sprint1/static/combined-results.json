@@ -10,7 +10,10 @@
       999
     ],
     "edges": [],
-    "zeros": [],
+
+    "zeros": [
+      0
+    ],
     "small": [
       2,
       3,
@@ -27,7 +30,10 @@
       null
     ],
     "edges": [],
-    "zeros": [],
+
+    "zeros": [
+      1
+    ],
     "small": [
       4,
       8,

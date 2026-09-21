@@ -24,15 +24,13 @@
 		"playwright": "^1.60.0",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
-		"tsx": "^4.23.13",
+		"tsx": "^4.23.15",
 		"typescript": "^6.0.3",
 		"vite": "^8.0.16",
 		"vitest": "^4.1.11",
 		"vitest-browser-svelte": "^2.1.1"
 	},
 	"dependencies": {
-		"peer-filter-c00260441": "github:Brandon-Cameron/RWM_P0_C00260441#v0.1.2"
+		"peer-filter-c00260441": "github:Brandon-Cameron/RWM_P0_C00260441#v0.1.5"
 	}
-  }
-
-
+}
