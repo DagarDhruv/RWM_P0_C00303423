@@ -45,3 +45,22 @@ test('none checked submits to 0%', async ({ page }) => {
   await page.getByRole('button', { name: 'Submit version' }).click();
   await expect(page.getByTestId('progress-label')).toHaveText('0/5 (0%)');
 });
+test('progress bar target snaps, animated bar catches up within 1s', async ({ page }) => {
+  await page.goto('/lab/checklist');
+
+  await page.getByRole('checkbox', { name: 'Step 1' }).click();
+  await page.getByRole('checkbox', { name: 'Step 2' }).click();
+  await page.getByRole('checkbox', { name: 'Step 3' }).click();
+  await page.getByRole('button', { name: 'Submit version' }).click();
+
+  await expect(page.getByTestId('progress-label')).toHaveText('3/5 (60%)');
+  const targetBar = page.getByTestId('progress-target');
+  await expect(targetBar).toHaveAttribute('data-value', '60');
+
+  
+  const animatedBar = page.getByTestId('progress-animated');
+  await expect(async () => {
+    const value = await animatedBar.getAttribute('data-value');
+    expect(Number(value)).toBe(60);
+  }).toPass({ timeout: 1200 });
+});
