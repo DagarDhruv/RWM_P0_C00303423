@@ -3,8 +3,8 @@
   import { itemsStore, completedStore, percentStore, toggleItem } from '$lib/stores/checklist';
 
   let visibleCompleted = 0;
-  let visiblePercent = 0;    
-  let animatedPercent = 0;  
+  let visiblePercent = 0;
+  let animatedPercent = 0;
 
   function handleToggle({ id, done }: { id: string; done: boolean }) {
     toggleItem(id, done);
@@ -12,10 +12,9 @@
 
   function handleSubmit() {
     visibleCompleted = $completedStore;
-    visiblePercent = $percentStore; 
+    visiblePercent = $percentStore;
   }
 
-  
   $: if (typeof window !== 'undefined') {
     animateTo(visiblePercent);
   }
@@ -31,12 +30,18 @@
       const elapsed = now - startTime;
       const t = Math.min(elapsed / duration, 1);
       animatedPercent = Math.round(start + (target - start) * t);
-      if (t < 1) {
-        animationFrame = requestAnimationFrame(step);
-      }
+      if (t < 1) animationFrame = requestAnimationFrame(step);
     }
     animationFrame = requestAnimationFrame(step);
   }
+
+  
+  function colourForPercent(p: number): string {
+    const hue = (p / 100) * 120; 
+    return `hsl(${hue}, 75%, 45%)`;
+  }
+
+  $: animatedColour = colourForPercent(animatedPercent);
 </script>
 
 <div>
@@ -55,7 +60,7 @@
       class="progress-animated"
       data-testid="progress-animated"
       data-value={animatedPercent}
-      style="width: {animatedPercent}%"
+      style="width: {animatedPercent}%; background: {animatedColour};"
     />
   </div>
 
@@ -74,9 +79,9 @@
 <style>
   .progress-track {
     position: relative;
-    height: 8px;
+    height: 20px; 
     background: #eee;
-    border-radius: 4px;
+    border-radius: 10px;
     overflow: hidden;
   }
   .progress-target {
@@ -87,6 +92,6 @@
   .progress-animated {
     position: absolute;
     inset: 0;
-    background: #369;
+    transition: background 0.3s ease;
   }
 </style>
